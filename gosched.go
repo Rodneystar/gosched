@@ -1,25 +1,26 @@
 package gosched
 
 import (
-	"time"	
+	"fmt"
+	"time"
 )
 
 type Clock struct {
-	Hour int
-	Minute int
-	Second int
+	Seconds int
 }
 
-func NewClockFromTime( t time.Time) Clock {
-	h, m, s := t.Clock();
+func (c *Clock) String() string {
+	return fmt.Sprintf("%02d:%02d:%02d", c.Seconds/60/60, (c.Seconds/60)%60, c.Seconds%60)
+}
 
-	return Clock{ 
-		Hour: h,
-		Minute: m,
-		Second: s,
+func NewClockFromTime(t time.Time) Clock {
+	h, m, s := t.Clock()
+
+	return Clock{
+		Seconds: s + m*60 + h*60*60,
 	}
 }
 
 type DailyTask struct {
-	TriggerAt time.Time
+	TriggerAt Clock
 }
