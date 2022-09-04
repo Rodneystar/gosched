@@ -14,6 +14,10 @@ func Test_learnTIme(t *testing.T) {
 	t.Logf("wall time : %s\n", time.Now())
 }
 
+func Test_repeatTimer(t *testing.T) {
+	time.Sleep()
+}
+
 func Test_clockString(t *testing.T) {
 	clock := NewClockFromTime(time.Date(2020, time.September, 2, 2, 2, 2, 2, time.UTC))
 
